@@ -1,6 +1,6 @@
 package com.masaischool.DTO;
 
-public class CustomerSingUpDTOImpl {
+public class CustomerSingUpDTOImpl implements CustomerSingUpDTO {
 	
 	  String fname;
 	  String lname;
