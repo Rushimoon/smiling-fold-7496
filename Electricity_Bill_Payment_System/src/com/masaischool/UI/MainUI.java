@@ -2,10 +2,11 @@ package com.masaischool.UI;
 
 import java.util.Scanner;
 
-import com.masaischool.DAO.CustomerSingUpDAO;
-import com.masaischool.DAO.CustomerSingUpDAOImpl;
-import com.masaischool.DTO.CustomerSingUpDTO;
-import com.masaischool.DTO.CustomerSingUpDTOImpl;
+import com.masaischool.DAO.CustomerDAO;
+import com.masaischool.DAO.CustomerDAOImpl;
+import com.masaischool.DTO.CustomerDTO;
+import com.masaischool.DTO.CustomerDTOImpl;
+import com.masaischool.exception.NoRecordFoundException;
 import com.masaischool.exception.SomeThingWrongException;
 
 public class MainUI {
@@ -32,14 +33,23 @@ public class MainUI {
 			String username = sc.next();
 			System.out.print("Enter password ");
 			String password = sc.next();
+			CustomerDAO customer = new CustomerDAOImpl() ;
+			try {
+				if(customer.customerLogin(username, password))
+				{
+				 System.out.println(" Electricity Department  Welcomes you  "+username+"  ");
+				}
+			} catch (SomeThingWrongException | NoRecordFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 			
 		 
 	 }
 	  static void customerSignUp(Scanner sc) {
-
-		  
-		  System.out.println("Enter your First Name");
+          System.out.println("Enter your First Name");
 		  String fname=sc.next();
 		  System.out.println("Enter your Last Name");
 		  String lname=sc.next();
@@ -48,13 +58,13 @@ public class MainUI {
 		  System.out.println("Enter your Password");
 		  String password=sc.next();
 		  System.out.println("Enter your Mobile Number");
-		  int number=sc.nextInt();
+		  String number=sc.next();
 		  System.out.println("Enter your Email");
 		  String email=sc.next();
 		  
 		  
-		  CustomerSingUpDTO cus = new CustomerSingUpDTOImpl(fname, lname, uname, password, number, email);
-          CustomerSingUpDAO cusDao = new CustomerSingUpDAOImpl();
+		  CustomerDTO cus = new CustomerDTOImpl(fname, lname, uname, password, number, email);
+          CustomerDAO cusDao = new CustomerDAOImpl();
           try {
 			cusDao.addCustomer(cus);
 			System.out.println("Customer Added Successfully");

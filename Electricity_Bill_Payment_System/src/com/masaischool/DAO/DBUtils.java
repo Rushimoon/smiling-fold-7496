@@ -19,7 +19,7 @@ public class DBUtils {
 			System.exit(1);
 		}
 		
-		ResourceBundle bundle = ResourceBundle.getBundle("DBdetails");
+		ResourceBundle bundle = ResourceBundle.getBundle("DBdetials");
 		
 		URL = bundle.getString("url");
 		username = bundle.getString("username");
