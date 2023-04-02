@@ -20,10 +20,11 @@ public  class AdminUI {
 		
 		CustomerDAO customer_detials =new CustomerDAOImpl();
 		List<CustomerDTOImpl> list= customer_detials.viewAllCustomer();
-		
+		System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		for(CustomerDTOImpl x : list){
 
              System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+ x.toString());
+            System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		}
 	}
 	
@@ -34,9 +35,11 @@ public  class AdminUI {
 		 int cid=sc.nextInt();
 		 BillDetialsDAOImpl bill = new BillDetialsDAOImpl();
 		List<BillDetialsDTOImpl> list =  bill.viewBillOfConsumer(cid);
+		System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		for(BillDetialsDTOImpl x : list)
 		{
-			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+x.toString());
+			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+x.toString()+ConsoleColors.RESET);
+			System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		}
 		 
 	 }
@@ -47,9 +50,11 @@ public  class AdminUI {
 		
 		 BillDetialsDAOImpl bill = new BillDetialsDAOImpl();
 		List<BillDetialsDTOImpl> list =  bill.viewAllBills();
+		System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		for(BillDetialsDTOImpl x : list)
 		{
-			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+x.toString());
+			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+x.toString()+ConsoleColors.RESET);
+			System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		}
 	 }
 	 public static void viewAllbillsP() throws SomeThingWrongException, NoRecordFoundException, ClassNotFoundException {
@@ -57,9 +62,11 @@ public  class AdminUI {
 		
 		 BillDetialsDAOImpl bill = new BillDetialsDAOImpl();
 		List<BillDetialsDTOImpl> list = bill.viewAllBillsP();
+		System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		for(BillDetialsDTOImpl x : list)
 		{
-			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+x.toString());
+			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+x.toString()+ConsoleColors.RESET);
+			System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		}
 	 }
 	 
@@ -69,25 +76,22 @@ public  class AdminUI {
 		 String uname =sc.next();
 		 CustomerDAO customer_detials =new CustomerDAOImpl();
          boolean result =customer_detials.deleteCustomer(uname);
-		 if(result)
-		 {
-			 System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"consumer deleted Successfully");
-		 }
+//		 if(result)
+//		 {
+//			 System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"consumer deleted Successfully"+ConsoleColors.RESET);
+//		 }
 		 
 	 }
 	 
 	
 	public static void adminMenu(Scanner sc) throws ClassNotFoundException {
-		
-		System.out.println(ConsoleColors.GREEN+ "   Admin Login Successfull..!! "+ConsoleColors.YELLOW+ " \n     Select Below Options  " +ConsoleColors.RESET);
-		
 		System.out.println(ConsoleColors.ORANGE +"==============================================="+"\n"
-	 +ConsoleColors.CYAN +"| Press 1 To View All Consumers                |"+"\n"
-	 +ConsoleColors.ORANGE +"| Press 2 To View Bill of All the consumer     |"+"\n"
-	 +ConsoleColors.CYAN  +"| Press 3 View all the bills                   |"+"\n"
-	 +ConsoleColors.ORANGE +"| Press 4 View all bills paid and pending      |"+"\n"
-	 +ConsoleColors.CYAN +"| Press 5 Delete consumer                      |"+"\n"
-				          +"===============================================" +ConsoleColors.RESET);
+	                        +ConsoleColors.CYAN +"| Press 1 To View All Consumers                |"+"\n"
+                          +ConsoleColors.ORANGE +"| Press 2 To View Bill of the consumer         |"+"\n"
+                           +ConsoleColors.CYAN  +"| Press 3 View all the bills of all consumer   |"+"\n"
+                          +ConsoleColors.ORANGE +"| Press 4 View all bills paid and pending      |"+"\n"
+	                        +ConsoleColors.CYAN +"| Press 5 Delete consumer                      |"+"\n"
+				                                +"===============================================" +ConsoleColors.RESET);
 		
 		
 //		System.out.println("Press 1 View all consumers. ");
@@ -130,6 +134,7 @@ public  class AdminUI {
   	               break;
 	     case 5 : try {
 	    	 deleteConsumer(sc); 
+	    	 System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"consumer deleted Successfully"+ConsoleColors.RESET);
 		} catch (SomeThingWrongException | NoRecordFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

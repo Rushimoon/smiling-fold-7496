@@ -22,8 +22,23 @@ public class MainUI {
 		String password = sc.next();
 		AdminUI admin = new AdminUI();
 		if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
-			
-		 admin.adminMenu(sc);
+		   int exit;
+		   System.out.println(ConsoleColors.GREEN+ "   Admin Login Successfull..!! "+ConsoleColors.YELLOW+ " \n     Select Below Options  " +ConsoleColors.RESET);
+		   admin.adminMenu(sc);
+		   do {
+				System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"press 0 to goto main menu");
+				System.out.println(ConsoleColors.BROWN+ "press 1 to continue admin menu");
+				
+				exit=sc.nextInt();
+				if(exit==1)
+			      {
+					 admin.adminMenu(sc);
+			      }
+				
+			}
+			while(exit!=0);
+	
+		 
 		}else {
 			System.out.println("Invalid Username and Password");
 		}
@@ -31,9 +46,9 @@ public class MainUI {
 
 	
 	 static void customerLogin(Scanner sc) {
-			System.out.print("Enter username ");
+			System.out.print(ConsoleColors.CYAN+ "Enter username "+ConsoleColors.RESET);
 			String username = sc.next();
-			System.out.print("Enter password ");
+			System.out.print(ConsoleColors.CYAN+"Enter password "+ConsoleColors.RESET);
 			String password = sc.next();
 			CustomerDAO customer = new CustomerDAOImpl() ;
 			try {
@@ -41,8 +56,8 @@ public class MainUI {
 				if(Cid>0)
 				{
 				 	
-				 System.out.println(ConsoleColors.GREEN_BACKGROUND_BRIGHT+ " Electricity Department  Welcomes you  "+username+"  ");
-				 System.out.println(Cid);
+				 System.out.println(ConsoleColors.GREEN+ " Electricity Department  Welcomes you  "+username+"  ");
+				 System.out.println("your customer id is  "+Cid+ConsoleColors.RESET);
 				 CustomerUI custo = new CustomerUI();
 				  custo.customer_menu(sc,Cid);
 				}
@@ -57,25 +72,25 @@ public class MainUI {
 		 
 	 }
 	  static void customerSignUp(Scanner sc) {
-          System.out.println(ConsoleColors.BANANA_YELLOW+ "Enter your First Name");
+          System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+ "Enter your First Name");
 		  String fname=sc.next();
-		  System.out.println(ConsoleColors.FOREST_GREEN_BACKGROUND+ "Enter your Last Name");
+		  System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+ "Enter your Last Name");
 		  String lname=sc.next();
-		  System.out.println(ConsoleColors.BANANA_YELLOW+"Enter your User Name");
+		  System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"Enter your User Name");
 		  String uname=sc.next();
-		  System.out.println(ConsoleColors.FOREST_GREEN_BACKGROUND+"Enter your Password");
+		  System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"Enter your Password");
 		  String password=sc.next();
-		  System.out.println(ConsoleColors.BANANA_YELLOW+"Enter your Mobile Number");
+		  System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"Enter your Mobile Number");
 		  String number=sc.next();
-		  System.out.println(ConsoleColors.FOREST_GREEN_BACKGROUND+"Enter your Email");
+		  System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"Enter your Email");
 		  String email=sc.next();
-		  
+		  System.out.println(ConsoleColors.RESET);
 		  
 		  CustomerDTO cus = new CustomerDTOImpl(fname, lname, uname, password, number, email);
           CustomerDAO cusDao = new CustomerDAOImpl();
           try {
 			cusDao.addCustomer(cus);
-			System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+ "Customer Added Successfully");
+			System.out.println(ConsoleColors.GREEN+ "Customer Added Successfully"+ConsoleColors.RESET);
 		} catch (SomeThingWrongException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +105,8 @@ public class MainUI {
 		int choice = 0;
 		do {
 			//System.out.println("1.Administrator Login\n2. Customer Login\n 3. customer SingUp \n 0. Exit");
-			
+			System.out.println(ConsoleColors.CYAN_UNDERLINED+ConsoleColors.BANANA_YELLOW+"Welcome To Electricity Bill Payment System");
+			System.out.println("Select following choices"+ConsoleColors.RESET);
 			System.out.println(ConsoleColors.ORANGE +"===================================="+"\n"
 					            +ConsoleColors.CYAN +"| Press 1 for Administrator Login  |"+"\n"
 					          +ConsoleColors.ORANGE +"| Press 2 for Customer Login       |"+"\n"
@@ -100,7 +116,7 @@ public class MainUI {
 			choice = sc.nextInt();
 			switch(choice) {
 				case 0:
-					System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+ "Thank you, Visit again");
+					System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+ "Thank you, Visit again"+ConsoleColors.RESET);
 					break;
 				case 1:
 					 adminLogin(sc);
@@ -112,7 +128,7 @@ public class MainUI {
 					customerSignUp(sc);
 					break;	
 				default:
-					System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT+ "Invalid Selection, try again");
+					System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT+ "Invalid Selection, try again"+ConsoleColors.RESET);
 			}
 		}while(choice != 0);
 		sc.close();

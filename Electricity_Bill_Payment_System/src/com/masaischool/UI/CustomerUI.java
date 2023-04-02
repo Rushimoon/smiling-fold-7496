@@ -13,15 +13,16 @@ import com.masaischool.exception.SomeThingWrongException;
 public class CustomerUI {
    public static void payElectricBill(Scanner sc ,int Cid) {
 	  
-	   System.out.println(ConsoleColors.RED_BOLD+"Please enter your debitcard number");
+	   System.out.println(ConsoleColors.RED_BOLD+"Please enter your debitcard number"+ConsoleColors.RESET);
 	   long debit_no=sc.nextLong();
-	   System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+ " Please enter your debitcard password");
+	   System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+ " Please enter your debitcard password"+ConsoleColors.RESET);
 	   int pass =sc.nextInt();
 	   CustomerDAO custo = new CustomerDAOImpl();
 	   try {
 	 if	(custo.payCustomerBill(Cid))
-	 {
-		System.out.println(ConsoleColors.GREEN_BACKGROUND+"Your Electricity Bill Was Paid Sucessfully"); 
+	 {  System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.BLUE_BOLD+"Your Electricity Bill Was Paid Sucessfully"+ConsoleColors.RESET); 
+		System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 	 }
 	} catch (NoRecordFoundException | SomeThingWrongException e) {
 		// TODO Auto-generated catch block
@@ -38,8 +39,10 @@ public class CustomerUI {
 	   CustomerDAO custo = new CustomerDAOImpl();
 	   try {
 		List<transactionHistory> th =custo.transactionHistory(Cid);
+		System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		for(transactionHistory x : th) {
 			System.out.println(x.toString());
+			System.out.println(ConsoleColors.RED_BOLD+ "-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ConsoleColors.RESET);
 		}
 	} catch (ClassNotFoundException | SomeThingWrongException | NoRecordFoundException e) {
 		// TODO Auto-generated catch block
