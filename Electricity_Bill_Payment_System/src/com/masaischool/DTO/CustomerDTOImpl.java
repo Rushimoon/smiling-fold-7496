@@ -17,6 +17,7 @@ public class CustomerDTOImpl implements CustomerDTO {
 		this.number = number;
 		this.email = email;
 	}
+	
 	public String getFname() {
 		return fname;
 	}
@@ -53,6 +54,10 @@ public class CustomerDTOImpl implements CustomerDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	@Override
+	public String toString() {
+		return "||fname=" + fname + ", lname=" + lname + ", uname=" + uname + ", mobile number=" + password
+				+ ", Email=" + number + "||";
+	}
 	
 }
