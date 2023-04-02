@@ -1,11 +1,13 @@
 package com.masaischool.UI;
 
+import java.io.Console;
 import java.util.Scanner;
 
 import com.masaischool.DAO.CustomerDAO;
 import com.masaischool.DAO.CustomerDAOImpl;
 import com.masaischool.DTO.CustomerDTO;
 import com.masaischool.DTO.CustomerDTOImpl;
+import com.masaischool.custom.ConsoleColors;
 import com.masaischool.exception.NoRecordFoundException;
 import com.masaischool.exception.SomeThingWrongException;
 
@@ -13,10 +15,10 @@ public class MainUI {
 
 	
 	
-	static void adminLogin(Scanner sc) {
-		System.out.print("Enter username ");
+	static void adminLogin(Scanner sc) throws ClassNotFoundException {
+		System.out.print(ConsoleColors.RED_BOLD+ "Enter username ");
 		String username = sc.next();
-		System.out.print("Enter password ");
+		System.out.print(ConsoleColors.RED_BOLD_BRIGHT+ "Enter password ");
 		String password = sc.next();
 		AdminUI admin = new AdminUI();
 		if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
@@ -35,10 +37,16 @@ public class MainUI {
 			String password = sc.next();
 			CustomerDAO customer = new CustomerDAOImpl() ;
 			try {
-				if(customer.customerLogin(username, password))
+				int Cid =customer.customerLogin(username, password);
+				if(Cid>0)
 				{
-				 System.out.println(" Electricity Department  Welcomes you  "+username+"  ");
+				 	
+				 System.out.println(ConsoleColors.GREEN_BACKGROUND_BRIGHT+ " Electricity Department  Welcomes you  "+username+"  ");
+				 System.out.println(Cid);
+				 CustomerUI custo = new CustomerUI();
+				  custo.customer_menu(sc,Cid);
 				}
+				
 			} catch (SomeThingWrongException | NoRecordFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -49,17 +57,17 @@ public class MainUI {
 		 
 	 }
 	  static void customerSignUp(Scanner sc) {
-          System.out.println("Enter your First Name");
+          System.out.println(ConsoleColors.BANANA_YELLOW+ "Enter your First Name");
 		  String fname=sc.next();
-		  System.out.println("Enter your Last Name");
+		  System.out.println(ConsoleColors.FOREST_GREEN_BACKGROUND+ "Enter your Last Name");
 		  String lname=sc.next();
-		  System.out.println("Enter your User Name");
+		  System.out.println(ConsoleColors.BANANA_YELLOW+"Enter your User Name");
 		  String uname=sc.next();
-		  System.out.println("Enter your Password");
+		  System.out.println(ConsoleColors.FOREST_GREEN_BACKGROUND+"Enter your Password");
 		  String password=sc.next();
-		  System.out.println("Enter your Mobile Number");
+		  System.out.println(ConsoleColors.BANANA_YELLOW+"Enter your Mobile Number");
 		  String number=sc.next();
-		  System.out.println("Enter your Email");
+		  System.out.println(ConsoleColors.FOREST_GREEN_BACKGROUND+"Enter your Email");
 		  String email=sc.next();
 		  
 		  
@@ -67,7 +75,7 @@ public class MainUI {
           CustomerDAO cusDao = new CustomerDAOImpl();
           try {
 			cusDao.addCustomer(cus);
-			System.out.println("Customer Added Successfully");
+			System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+ "Customer Added Successfully");
 		} catch (SomeThingWrongException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,15 +85,22 @@ public class MainUI {
 		  
 	  }
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 	   Scanner sc = new Scanner(System.in);
 		int choice = 0;
 		do {
-			System.out.println("1.Administrator Login\n2. Customer Login\n 3. customer SingUp \n 0. Exit");
+			//System.out.println("1.Administrator Login\n2. Customer Login\n 3. customer SingUp \n 0. Exit");
+			
+			System.out.println(ConsoleColors.ORANGE +"===================================="+"\n"
+					            +ConsoleColors.CYAN +"| Press 1 for Administrator Login  |"+"\n"
+					          +ConsoleColors.ORANGE +"| Press 2 for Customer Login       |"+"\n"
+					           +ConsoleColors.CYAN  +"| Press 3 for Customer Singup      |"+"\n"
+                               +ConsoleColors.ORANGE+"====================================" +ConsoleColors.RESET);
+			
 			choice = sc.nextInt();
 			switch(choice) {
 				case 0:
-					System.out.println("Thank you, Visit again");
+					System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+ "Thank you, Visit again");
 					break;
 				case 1:
 					 adminLogin(sc);
@@ -97,7 +112,7 @@ public class MainUI {
 					customerSignUp(sc);
 					break;	
 				default:
-					System.out.println("Invalid Selection, try again");
+					System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT+ "Invalid Selection, try again");
 			}
 		}while(choice != 0);
 		sc.close();
